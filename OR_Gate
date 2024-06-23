@@ -1,0 +1,51 @@
+//VERILOG CODE FOR OR GATE
+module or_gate (
+    input wire a,
+    input wire b,
+    output wire y
+);
+    assign y = a | b;
+endmodule
+
+
+module tb_or_gate;
+reg a;
+reg b;
+wire y;
+
+// Instantiate the OR gate module
+or_gate uut (
+    .a(a),
+    .b(b),
+    .y(y)
+);
+
+// Apply test vectors
+initial begin
+  
+  $dumpfile("test.vcd");
+  $dumpvars(1);
+    // Monitor the signals
+    $monitor("a = %b, b = %b, y = %b", a, b, y);
+
+    // Test case 1: a = 0, b = 0
+    a = 0; b = 0;
+    #10;
+
+    // Test case 2: a = 0, b = 1
+    a = 0; b = 1;
+    #10;
+
+    // Test case 3: a = 1, b = 0
+    a = 1; b = 0;
+    #10;
+
+    // Test case 4: a = 1, b = 1
+    a = 1; b = 1;
+    #10;
+
+    // End of test
+    $finish;
+end
+
+endmodule
